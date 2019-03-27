@@ -1,3 +1,47 @@
+function switchVisible() {
+  if (document.getElementById("speech-to-text")) {
+    if (document.getElementById("speech-to-text").style.display == "none") {
+      document.getElementById("speech-to-text").style.display = "block";
+      document.getElementById("text-to-speech").style.display = "none";
+    } else {
+      document.getElementById("speech-to-text").style.display = "none";
+      document.getElementById("text-to-speech").style.display = "block";
+    }
+  }
+}
+
+function showExperimentalComponent() {
+  if (document.getElementById("toggle-button")) {
+    if (document.getElementById("toggle-button").style.display == "inline") {
+      document.getElementById("toggle-button").style.display = "none";
+    } else {
+      document.getElementById("toggle-button").style.display = "inline";
+    }
+  }
+
+  if (document.getElementById("non-experimental-container")) {
+    if (document.getElementById("non-experimental-container").style.display == "block") {
+      document.getElementById("non-experimental-container").style.display = "none";
+    } else {
+      document.getElementById("non-experimental-container").style.display = "block";
+    }
+  }
+
+  if (document.getElementById("experimental-container")) {
+    if (
+      document.getElementById("experimental-container").style.display ==
+      "block"
+    ) {
+      document.getElementById("experimental-container").style.display =
+        "none";
+    } else {
+      document.getElementById("experimental-container").style.display =
+        "block";
+    }
+  }
+}
+
+
 /******************** SPEECH RECOGNITION ********************/
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
@@ -27,13 +71,19 @@ function recordSpeech() {
     speechResult.textContent = "Speech received: " + result + ".";
 
     confidenceResult.textContent =
-      "Confidence: " + event.results[0][0].confidence;
+      "Confidence value: " + event.results[0][0].confidence;
   };
 
   recognition.onspeechend = () => {
     recognition.stop();
     recordButton.disabled = false;
     recordButton.textContent = "Start Recording";
+
+    if (document.getElementById("stop-button")) {
+      if (document.getElementById("stop-button").style.display == "block") {
+        document.getElementById("stop-button").style.display = "none";
+      }
+    }
   };
 
   recognition.onerror = event => {
@@ -80,6 +130,11 @@ function recordSpeech() {
   recognition.onspeechstart = event => {
     //Fired when sound that is recognised by the speech recognition service as speech has been detected.
     console.log("SpeechRecognition.onspeechstart");
+    if (document.getElementById("stop-button")) {
+      if (document.getElementById("stop-button").style.display == "none") {
+        document.getElementById("stop-button").style.display = "block";
+      }
+    }
   };
   recognition.onstart = event => {
     //Fired when the speech recognition service has begun listening to incoming audio with intent to recognize grammars associated with the current SpeechRecognition.
@@ -152,7 +207,7 @@ function speak() {
     utterThis.onend = event => {
       console.log("SpeechSynthesisUtterance.onend");
     };
-    utterThis.onerror = function(event) {
+    utterThis.onerror = function (event) {
       console.error("SpeechSynthesisUtterance.onerror");
     };
 
