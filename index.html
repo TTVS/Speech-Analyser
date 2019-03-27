@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>Text To Speech / Speech To Text</title>
+  </head>
+  <body class="bg-dark text-white">
+    <!-- Toggle Speech Recognition / Speech Synthesiser -->
+    <button
+      class="btn btn-light ml-2 mt-2"
+      type="button"
+      data-toggle="collapse"
+      data-target="#speech-to-text"
+      aria-expanded="false"
+      aria-controls="speech-to-text"
+    >
+      Speech To Text
+    </button>
+
+    <button
+      class="btn btn-light ml-2 mt-2"
+      type="button"
+      data-toggle="collapse"
+      data-target="#text-to-speech"
+      aria-expanded="false"
+      aria-controls="text-to-speech"
+    >
+      Text to Speech
+    </button>
+
+    <br />
+    <span class="ml-2">Only works on Chrome 33+</span>
+
+    <!-- Speech recognition -->
+    <div class="container text-center collapse.show" id="speech-to-text">
+      <img src="img/speech.png" alt="" class="mb-5 mt-5 w-25 h-auto" />
+
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <button
+            class="btn btn-light btn-lg btn-block mt-3 mb-3"
+            id="voice-button"
+          >
+            Start Recording
+          </button>
+          <br />
+          <p class="result text-info font-weight-bold"></p>
+          <br />
+          <p class="confidence mb-5"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speech synthesiser -->
+    <div class="container text-center collapse" id="text-to-speech">
+      <img src="img/chat.png" alt="" class="mb-5 mt-5 w-25 h-auto" />
+
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <form id="dictation-form">
+            <div class="form-group">
+              <textarea
+                name=""
+                id="text-input"
+                class="form-control form-control-lg"
+                placeholder="Type here..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="rate">Rate</label>
+              <div id="rate-value" class="badge badge-primary float-right">
+                1
+              </div>
+              <input
+                type="range"
+                id="rate"
+                class="custom-range"
+                min="0.5"
+                max="2"
+                value="1"
+                step="0.1"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="pitch">Pitch</label>
+              <div id="pitch-value" class="badge badge-primary float-right">
+                1
+              </div>
+              <input
+                type="range"
+                id="pitch"
+                class="custom-range"
+                min="0"
+                max="2"
+                value="1"
+                step="0.1"
+              />
+            </div>
+
+            <div class="form-group">
+              <select
+                id="voice-select"
+                class="form-control form-control-lg"
+              ></select>
+            </div>
+
+            <button class="btn btn-light btn-lg btn-block mb-5">
+              Speak It
+            </button>
+          </form>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="js/main.js"></script>
+
+    <footer>
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="font-weight-lighter text-center text-muted">
+            Icons made by
+            <a
+              href="https://www.flaticon.com/authors/smashicons"
+              title="Smashicons"
+              >Smashicons</a
+            >
+            from
+            <a href="https://www.flaticon.com/" title="Flaticon"
+              >www.flaticon.com</a
+            >
+            is licensed by
+            <a
+              href="http://creativecommons.org/licenses/by/3.0/"
+              title="Creative Commons BY 3.0"
+              target="_blank"
+              >CC 3.0 BY</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
